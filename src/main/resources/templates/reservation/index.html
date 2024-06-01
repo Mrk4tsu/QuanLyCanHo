@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/head::head">
+</head>
+<body class="animsition">
+
+<div class="page-wrapper">
+    <div th:replace="layout/header-mobile :: header-mobile"></div>
+    <div th:replace="layout/menu-sidebar :: menu-sidebar"></div>
+    <div class="page-container">
+        <div th:replace="layout/header-desktop :: header-desktop"></div>
+        <div class="main-content">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="overview-wrap">
+                                <h2 class="title-1">overview</h2>
+                                <a th:href="@{/admin/reservation/add}"
+                                   class="text-light au-btn au-btn-icon au-btn--blue">
+                                    <i class="zmdi zmdi-plus"></i>add reservation</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow my-4">
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr class="text-center">
+                                    <th>Room Number</th>
+                                    <th>Customer</th>
+                                    <th>Check in</th>
+                                    <th>Check out</th>
+                                    <th>Total Price</th>
+                                    <th>Status</th>
+                                    <th>#</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="p : ${reservations}" class="text-center">
+                                    <td th:text="${p.rooms.room_number}"></td>
+                                    <td th:text="${p.customers.first_name} + ' ' + ${p.customers.last_name}"></td>
+
+                                    <td th:text="${p.check_in}"></td>
+                                    <td th:text="${p.check_out}"></td>
+
+                                    <td th:text="${p.total_price}"></td>
+
+                                    <td th:if="${p.status}"><span class="badge badge-success">Confirmed</span></td>
+                                    <td th:if="${!p.status}"><span class="badge badge-danger">Cancelled</span></td>
+
+                                    <td>
+                                        <a th:href="@{'/admin/reservation/edit/' + ${p.id}}"
+                                           class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                                        <a th:href="@{'/admin/reservation/delete/' + ${p.id}}"
+                                           class="btn btn-sm btn-danger" onclick="return confirm('Bạn chắc chưa?')">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                        <a th:href="@{'/admin/reservation/' + ${p.id}}" class="btn btn-sm btn-info">
+                                            View Details
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="layout/script :: script"></div>
+</body>
+</html>

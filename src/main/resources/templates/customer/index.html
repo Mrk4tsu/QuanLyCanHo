@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/head::head">
+</head>
+<body class="animsition">
+
+<div class="page-wrapper">
+    <div th:replace="layout/header-mobile :: header-mobile"></div>
+    <div th:replace="layout/menu-sidebar :: menu-sidebar"></div>
+    <div class="page-container">
+        <div th:replace="layout/header-desktop :: header-desktop"></div>
+        <div class="main-content">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="overview-wrap">
+                                <h2 class="title-1">overview</h2>
+                                <a th:href="@{/admin/customer/add}" class="text-light au-btn au-btn-icon au-btn--blue">
+                                    <i class="zmdi zmdi-plus"></i>add customer</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow my-4">
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr class="text-center">
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                    <th>#</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="p : ${list}" class="text-center">
+                                    <td th:text="${p.first_name} + ' ' + ${p.last_name}" ></td>
+                                    <td th:text="${p.email}"></td>
+                                    <td th:text="${p.phone}"></td>
+                                    <td th:text="${p.address}"></td>
+
+                                    <td>
+                                        <a th:href="@{'/admin/customer/edit/' + ${p.id}}"
+                                           class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                                        <a th:href="@{'/admin/customer/delete/' + ${p.id}}"
+                                           class="btn btn-sm btn-danger" onclick="return confirm('Bạn chắc chưa?')">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="layout/script :: script"></div>
+</body>
+</html>

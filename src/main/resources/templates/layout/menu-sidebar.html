@@ -1,0 +1,33 @@
+<aside class="menu-sidebar d-none d-lg-block" th:fragment="menu-sidebar">
+    <div class="logo">
+        <a th:href="@{/}">
+            <img src="/assets/images/icon/logo.png" alt="Cool Admin" />
+        </a>
+    </div>
+    <div class="menu-sidebar__content js-scrollbar1">
+        <nav class="navbar-sidebar">
+            <ul class="list-unstyled navbar__list">
+                <li class="has-sub">
+                    <a th:href="@{/}">
+                        <i class="fas fa-tachometer-alt"></i>Home</a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/customer}">
+                        <i class="fas fa-chart-bar"></i>Customer</a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/employee}">
+                        <i class="fas fa-table"></i>Employee</a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/room}">
+                        <i class="far fa-check-square"></i>Room</a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/reservation}">
+                        <i class="far fa-check-square"></i>Reservation</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/head::head">
+</head>
+<body class="animsition">
+
+<div class="page-wrapper">
+    <div th:replace="layout/header-mobile :: header-mobile"></div>
+    <div th:replace="layout/menu-sidebar :: menu-sidebar"></div>
+    <div class="page-container">
+        <div th:replace="layout/header-desktop :: header-desktop"></div>
+        <div class="main-content">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="overview-wrap">
+                                <h2 class="title-1">overview</h2>
+                                <a th:href="@{/admin/add}" class="text-light au-btn au-btn-icon au-btn--blue">
+                                    <i class="zmdi zmdi-plus"></i>add item</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-t-25 d-flex justify-content-center" th:each="p : ${rooms}">
+                        <div class="col-lg-6">
+                            <div th:if="${!p.status}" class="overview-item overview-item--c2">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="text mb-3">
+                                            <h2 th:text="'Room: ' + ${p.room_number}"></h2>
+                                            <span class="text-light"> Status: Empty</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div th:if="${p.status}" class="overview-item overview-item--c3">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="text mb-3">
+                                            <h2 th:text="'Room: ' + ${p.room_number}"></h2>
+                                            <span class="text-light">Status: Ordered</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!--                        <div  class="col-sm-6 col-lg-3">-->
+<!--                            <div class="overview-item overview-item&#45;&#45;c3">-->
+<!--                                <div class="overview__inner">-->
+<!--                                    <div class="overview-box clearfix">-->
+<!--                                        <div class="text mb-3">-->
+<!--                                            <h2 th:text="'Room: ' + ${p.room_number}"></h2>-->
+<!--                                            <span class="text-light" th:text="'Status: ' + ${p.status}"></span>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="layout/script :: script"></div>
+</body>
+</html>

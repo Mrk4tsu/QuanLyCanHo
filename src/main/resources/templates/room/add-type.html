@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/head::head">
+</head>
+<body class="animsition">
+
+<div class="page-wrapper">
+    <div th:replace="layout/header-mobile :: header-mobile"></div>
+    <div th:replace="layout/menu-sidebar :: menu-sidebar"></div>
+    <div class="page-container">
+        <div th:replace="layout/header-desktop :: header-desktop"></div>
+        <div class="main-content">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="card shadow mb-4">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="overview-wrap">
+                                        <h6 class="title-3">Add room</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form th:action="@{/admin/room-type/add}" th:object="${roomType}" method="post">
+                                <div class="mb-3">
+                                    <label for="room_type" class="form-label">Room Type:</label>
+                                    <input type="text" th:field="*{name}" class="form-control" id="room_type">
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-primary col-6">Submit</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="layout/script :: script"></div>
+</body>
+</html>

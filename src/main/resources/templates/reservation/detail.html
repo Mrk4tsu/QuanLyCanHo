@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/head::head">
+</head>
+<body class="animsition">
+<div class="page-wrapper">
+    <!-- ... -->
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid d-flex justify-content-center">
+                <div class="card shadow mb-4 col-6">
+                    <div class="card-header">
+                        <h6 class="title-3">Reservation Detail</h6>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Room Number:</strong> <span th:text="${reservation.rooms.room_number}"></span></p>
+                        <p><strong>Room Type:</strong> <span th:text="${reservation.rooms.roomType.name}"></span></p>
+                        <p><strong>Capacity:</strong> <span th:text="${reservation.rooms.capital}"></span></p>
+                        <p><strong>Customer:</strong> <span th:text="${reservation.customers.first_name} + ' ' + ${reservation.customers.last_name}"></span></p>
+                        <p><strong>Check in:</strong> <span th:text="${reservation.check_in}"></span></p>
+                        <p><strong>Check out:</strong> <span th:text="${reservation.check_out}"></span></p>
+                        <p><strong>Total Price:</strong> <span th:text="${reservation.total_price}"></span></p>
+                        <p><strong>Status:</strong> <span th:text="${reservation.status} ? 'Confirmed':'Canceled'"></span></p>
+                        <p><strong>Processing staff:</strong> <span th:text="${reservation.employees.first_name} + ' ' + ${reservation.employees.last_name}"></span></p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="overview-wrap">
+                            <h2 class="title-1">overview</h2>
+                            <a th:if="${reservation.status}" th:href="@{/admin/payment/add}"
+                               class="text-light btn-sm au-btn au-btn-icon au-btn--blue">
+                                Payment and Print Bill
+                            </a>
+                            <a th:if="${!reservation.status}" th:href="@{/}"
+                               class="text-light btn-sm au-btn au-btn-icon au-btn--green">
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ... -->
+</div>
+<div th:replace="layout/script :: script"></div>
+</body>
+</html>
